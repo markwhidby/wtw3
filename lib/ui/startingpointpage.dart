@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../strings.dart';
 import '../models/startingpoint.dart';
+import "startingpointdetailpage.dart";
 
 class StartingPointPage extends StatefulWidget {
   @override
@@ -28,11 +29,13 @@ class StartingPointPageState extends State<StartingPointPage> {
             new Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new IconButton (
+                new IconButton(
                   icon: Icon(Icons.near_me),
+                  onPressed: null,
                 ),
-                new IconButton (
+                new IconButton(
                   icon: Icon(Icons.add),
+                  onPressed: null,
                 ),
               ],
             ),
@@ -74,15 +77,19 @@ class StartingPointPageState extends State<StartingPointPage> {
     return new ListTile(
       title: new Text(_startingPoints[index].name),
       subtitle: new Text(_subtitle),
-      trailing: new Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(Icons.edit),
-          Icon(Icons.delete),
-        ]
-      ),
+      trailing: new Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+        new IconButton(
+          icon: Icon(Icons.edit),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => StartingPointDetailPage()),
+            );
+          },
+        ),
+        Icon(Icons.delete),
+      ]),
     );
   }
 }
-
-
