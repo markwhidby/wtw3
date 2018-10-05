@@ -86,7 +86,7 @@ class StartingPointPageState extends State<StartingPointPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => StartingPointDetailPage()),
+                  builder: (context) => StartingPointDetailPage(_startingPoints[index])),
             );
           },
         ),

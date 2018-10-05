@@ -4,6 +4,10 @@ import '../strings.dart';
 import '../models/startingpoint.dart';
 
 class StartingPointDetailPage extends StatefulWidget {
+  final StartingPoint startingPoint;
+
+  StartingPointDetailPage ({Key key, this.startingPoint}) : super(key: key);
+
   @override
   createState() => new StartingPointDetailPageState();
 }
@@ -27,10 +31,12 @@ class StartingPointDetailPageState extends State<StartingPointDetailPage> {
 
 // Create a Form Widget
 class StartingPointForm extends StatefulWidget {
+  final StartingPoint startingPoint;
+
+  StartingPointForm ({Key, key, this.startingPoint}) : super(key: key);
+
   @override
-  StartingPointFormState createState() {
-    return StartingPointFormState();
-  }
+  createState() => new StartingPointFormState();
 }
 
 // Create a corresponding State class. This class will hold the data related to
@@ -43,6 +49,11 @@ class StartingPointFormState extends State<StartingPointForm> {
   final _zipController = TextEditingController();
   final _latController = TextEditingController();
   final _longController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -61,7 +72,6 @@ class StartingPointFormState extends State<StartingPointForm> {
       controller: _nameController,
       decoration: const InputDecoration(
         icon: const Icon(Icons.place),
-        hintText: 'Enter name',
         labelText: 'Name',
       ),
       validator: (value) {
@@ -77,7 +87,7 @@ class StartingPointFormState extends State<StartingPointForm> {
       controller: _cityController,
       decoration: const InputDecoration(
         icon: const Icon(Icons.place),
-        hintText: 'Enter city',
+        // hintText: 'Enter city',
         labelText: 'City',
       ),
       validator: (value) {
@@ -93,7 +103,7 @@ class StartingPointFormState extends State<StartingPointForm> {
       controller: _stateController,
       decoration: const InputDecoration(
         icon: const Icon(Icons.place),
-        hintText: 'Enter state',
+        // hintText: 'Enter state',
         labelText: 'State',
       ),
       validator: (value) {
@@ -109,7 +119,7 @@ class StartingPointFormState extends State<StartingPointForm> {
       controller: _zipController,
       decoration: const InputDecoration(
         icon: const Icon(Icons.place),
-        hintText: 'Enter zip',
+        // hintText: 'Enter zip',
         labelText: 'Zip',
       ),
       validator: (value) {
@@ -123,10 +133,10 @@ class StartingPointFormState extends State<StartingPointForm> {
   Widget latField() {
     return TextFormField(
       controller: _latController,
-      keyboardType: TextInputType.numberWithOptions(),
+      keyboardType: const TextInputType.numberWithOptions(),
       decoration: const InputDecoration(
         icon: const Icon(Icons.near_me),
-        hintText: 'Enter latitude',
+        // hintText: 'Enter latitude',
         labelText: 'Latitude',
       ),
       validator: (value) {
@@ -140,10 +150,10 @@ class StartingPointFormState extends State<StartingPointForm> {
   Widget longField() {
     return TextFormField(
       controller: _longController,
-      keyboardType: TextInputType.numberWithOptions(),
+      keyboardType: const TextInputType.numberWithOptions(),
       decoration: const InputDecoration(
         icon: const Icon(Icons.near_me),
-        hintText: 'Enter longitude',
+        // hintText: 'Enter longitude',
         labelText: 'Longitude',
       ),
       validator: (value) {
@@ -156,7 +166,6 @@ class StartingPointFormState extends State<StartingPointForm> {
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey we created above
     return Form(
       key: _formKey,
       child: Column(
@@ -168,14 +177,12 @@ class StartingPointFormState extends State<StartingPointForm> {
           // zipField(),
           latField(),
           longField(),
-          SizedBox(height: 12.0),
+          SizedBox(height: 20.0),
           Center(
             child: RaisedButton(
               onPressed: () {
-                // Validate will return true if the form is valid, or false if
-                // the form is invalid.
+                // Validate will return true if the form is valid
                 if (_formKey.currentState.validate()) {
-                  // If the form is valid, we want to show a Snackbar
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text(_nameController.text)));
                 }
