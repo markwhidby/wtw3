@@ -42,11 +42,11 @@ class StartingPointPageState extends State<StartingPointPage> {
             new Flexible(
               child: getStartingPointList(context),
             ),
-            new SizedBox(height: 200.0),
-            new Image.network(
-              'https://cdn.cnn.com/cnn/.e1mo/img/4.0/logos/logo_cnn_badge_2up.png',
-              fit: BoxFit.cover,
-            ),
+            // new SizedBox(height: 200.0),
+            // new Image.network(
+            //   'https://cdn.cnn.com/cnn/.e1mo/img/4.0/logos/logo_cnn_badge_2up.png',
+            //   fit: BoxFit.cover,
+            // ),
           ],
         ),
       ),
@@ -73,7 +73,9 @@ class StartingPointPageState extends State<StartingPointPage> {
 //      ),
 //    );
 //    return new Text(_startingPoints[index].name);
-    String _subtitle = _startingPoints[index].city;
+    String _subtitle = _startingPoints[index].city + ', ' 
+                      + _startingPoints[index].state + '  '
+                      + _startingPoints[index].zip;
     return new ListTile(
       title: new Text(_startingPoints[index].name),
       subtitle: new Text(_subtitle),
