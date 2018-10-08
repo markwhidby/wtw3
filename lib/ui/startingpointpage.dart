@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../strings.dart';
 import '../models/startingpoint.dart';
-import "startingpointdetailpage.dart";
+import 'startingpointdetailpage.dart';
 
 class StartingPointPage extends StatefulWidget {
   @override
@@ -86,7 +86,7 @@ class StartingPointPageState extends State<StartingPointPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => StartingPointDetailPage(_startingPoints[index])),
+                  builder: (context) => StartingPointDetailPage(startingPoint: _startingPoints[index])),
             );
           },
         ),

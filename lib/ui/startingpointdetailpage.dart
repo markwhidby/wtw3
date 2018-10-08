@@ -6,17 +6,17 @@ import '../models/startingpoint.dart';
 class StartingPointDetailPage extends StatefulWidget {
   final StartingPoint startingPoint;
 
-  StartingPointDetailPage ({Key key, this.startingPoint}) : super(key: key);
+  StartingPointDetailPage ({Key key, @required this.startingPoint}) : super(key: key);
 
   @override
-  createState() => new StartingPointDetailPageState();
+  _StartingPointDetailPageState createState() => new _StartingPointDetailPageState();
 }
 
-class StartingPointDetailPageState extends State<StartingPointDetailPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class _StartingPointDetailPageState extends State<StartingPointDetailPage> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class StartingPointDetailPageState extends State<StartingPointDetailPage> {
       appBar: new AppBar(
         title: new Text(Strings.appTitle),
       ),
-      body: new StartingPointForm(),
+      body: new StartingPointForm(startingPoint: widget.startingPoint),
     );
   }
 }
@@ -33,15 +33,15 @@ class StartingPointDetailPageState extends State<StartingPointDetailPage> {
 class StartingPointForm extends StatefulWidget {
   final StartingPoint startingPoint;
 
-  StartingPointForm ({Key, key, this.startingPoint}) : super(key: key);
+  StartingPointForm ({Key key, this.startingPoint}) : super(key: key);
 
   @override
-  createState() => new StartingPointFormState();
+  _StartingPointFormState createState() => new _StartingPointFormState();
 }
 
 // Create a corresponding State class. This class will hold the data related to
 // the form.
-class StartingPointFormState extends State<StartingPointForm> {
+class _StartingPointFormState extends State<StartingPointForm> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _cityController = TextEditingController();
@@ -50,9 +50,16 @@ class StartingPointFormState extends State<StartingPointForm> {
   final _latController = TextEditingController();
   final _longController = TextEditingController();
 
+
   @override
   void initState() {
-    super.initState();
+    _nameController.text = widget.startingPoint.name;
+    _cityController.text = widget.startingPoint.city;
+    _stateController.text = widget.startingPoint.state;
+    _zipController.text = widget.startingPoint.zip;
+    _latController.text = widget.startingPoint.latitude.toString();
+    _longController.text = widget.startingPoint.longitude.toString();
+    return super.initState();
   }
 
   @override
@@ -139,11 +146,11 @@ class StartingPointFormState extends State<StartingPointForm> {
         // hintText: 'Enter latitude',
         labelText: 'Latitude',
       ),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter a number';
-        }
-      },
+      // validator: (value) {
+      //   if (value.isEmpty) {
+      //     return 'Please enter a number';
+      //   }
+      // },
     );
   }
 
@@ -156,11 +163,11 @@ class StartingPointFormState extends State<StartingPointForm> {
         // hintText: 'Enter longitude',
         labelText: 'Longitude',
       ),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter a number';
-        }
-      },
+      // validator: (value) {
+      //   if (value.isEmpty) {
+      //     return 'Please enter a number';
+      //   }
+      // },
     );
   }
 
