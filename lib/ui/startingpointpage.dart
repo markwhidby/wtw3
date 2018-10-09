@@ -6,10 +6,10 @@ import 'startingpointdetailpage.dart';
 
 class StartingPointPage extends StatefulWidget {
   @override
-  createState() => new StartingPointPageState();
+  createState() => new _StartingPointPageState();
 }
 
-class StartingPointPageState extends State<StartingPointPage> {
+class _StartingPointPageState extends State<StartingPointPage> {
   @override
   void initState() {
     super.initState();
@@ -40,7 +40,7 @@ class StartingPointPageState extends State<StartingPointPage> {
               ],
             ),
             new Flexible(
-              child: getStartingPointList(context),
+              child: _getStartingPointList(context),
             ),
             // new SizedBox(height: 200.0),
             // new Image.network(
@@ -53,11 +53,20 @@ class StartingPointPageState extends State<StartingPointPage> {
     );
   }
 
-  getStartingPointList(BuildContext context) {
+  _getStartingPointList(BuildContext context) {
     return ListView.builder(
       itemCount: _startingPoints.length,
       itemBuilder: _getStartingPoint,
       padding: EdgeInsets.all(0.0),
+    );
+  }
+
+  _navigateToDetailPage(BuildContext context, int index) async {
+    final result = Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              StartingPointDetailPage(startingPoint: _startingPoints[index])),
     );
   }
 
@@ -73,9 +82,11 @@ class StartingPointPageState extends State<StartingPointPage> {
 //      ),
 //    );
 //    return new Text(_startingPoints[index].name);
-    String _subtitle = _startingPoints[index].city + ', ' 
-                      + _startingPoints[index].state + '  '
-                      + _startingPoints[index].zip;
+    String _subtitle = _startingPoints[index].city +
+        ', ' +
+        _startingPoints[index].state +
+        '  ' +
+        _startingPoints[index].zip;
     return new ListTile(
       title: new Text(_startingPoints[index].name),
       subtitle: new Text(_subtitle),
@@ -83,11 +94,14 @@ class StartingPointPageState extends State<StartingPointPage> {
         new IconButton(
           icon: Icon(Icons.edit),
           onPressed: () {
-            Navigator.push(
+            final result = Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => StartingPointDetailPage(startingPoint: _startingPoints[index])),
+                  builder: (context) => StartingPointDetailPage(
+                      startingPoint: _startingPoints[index])),
             );
+            Scaffold.of(context)
+                .showSnackBar(SnackBar(content: Text('$result.name')));
           },
         ),
         Icon(Icons.delete),

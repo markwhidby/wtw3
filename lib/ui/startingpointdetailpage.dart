@@ -4,7 +4,7 @@ import '../strings.dart';
 import '../models/startingpoint.dart';
 
 class StartingPointDetailPage extends StatefulWidget {
-  final StartingPoint startingPoint;
+  StartingPoint startingPoint;
 
   StartingPointDetailPage ({Key key, @required this.startingPoint}) : super(key: key);
 
@@ -97,11 +97,11 @@ class _StartingPointFormState extends State<StartingPointForm> {
         // hintText: 'Enter city',
         labelText: 'City',
       ),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter some text';
-        }
-      },
+      // validator: (value) {
+      //   if (value.isEmpty) {
+      //     return 'Please enter some text';
+      //   }
+      // },
     );
   }
 
@@ -113,11 +113,11 @@ class _StartingPointFormState extends State<StartingPointForm> {
         // hintText: 'Enter state',
         labelText: 'State',
       ),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter some text';
-        }
-      },
+      // validator: (value) {
+      //   if (value.isEmpty) {
+      //     return 'Please enter some text';
+      //   }
+      // },
     );
   }
 
@@ -129,11 +129,11 @@ class _StartingPointFormState extends State<StartingPointForm> {
         // hintText: 'Enter zip',
         labelText: 'Zip',
       ),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter some text';
-        }
-      },
+      // validator: (value) {
+      //   if (value.isEmpty) {
+      //     return 'Please enter some text';
+      //   }
+      // },
     );
   }
 
@@ -179,9 +179,9 @@ class _StartingPointFormState extends State<StartingPointForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           nameField(),
-          // cityField(),
-          // stateField(),
-          // zipField(),
+          cityField(),
+          stateField(),
+          zipField(),
           latField(),
           longField(),
           SizedBox(height: 20.0),
@@ -190,8 +190,10 @@ class _StartingPointFormState extends State<StartingPointForm> {
               onPressed: () {
                 // Validate will return true if the form is valid
                 if (_formKey.currentState.validate()) {
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text(_nameController.text)));
+                  // Scaffold.of(context)
+                  //     .showSnackBar(SnackBar(content: Text(_nameController.text)));
+                      // widget.startingPoint.name = _nameController.text;
+                      Navigator.pop (context, widget.startingPoint);
                 }
               },
               child: Text('Save'),

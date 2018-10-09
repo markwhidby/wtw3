@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "831862703542",
+    "firebase_url": "https://first-fb-app-5cbe5.firebaseio.com",
+    "project_id": "first-fb-app-5cbe5",
+    "storage_bucket": "first-fb-app-5cbe5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831862703542:android:4ebc523c275bac5b",
+        "android_client_info": {
+          "package_name": "com.raywenderlich.android.ghflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831862703542-n69l5g4t9m1lqs0rjs7sgjv180m0tkf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCws4XakumpQr4CQr7KpyMB0CFROegE6Is"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
